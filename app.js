@@ -7,7 +7,7 @@ const version = '1.0.0';
 
 app.get('/', (req, res) => {
     // set response content    
-        res.json({adios: "a todos"});
+        res.json({hola: "mundo"});
  
   console.log(`[Version ${version}]: New request => http://${hostname}:${port}`+req.url);
 
