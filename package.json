@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-aws-codedeploy-pipeline",
+  "name": "wepardo-backend",
   "version": "1.0.0",
   "description": "Deploy nodejs app to aws ec2 ubuntu server with aws codedeploy and aws pipeline and Github action - CI / CD tutorial",
   "main": "app.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saasscaleup/nodejs-aws-codedeploy-pipeline.git"
+    "url": "git+https://github.com/MayenRosil/wepardo-backend.git"
   },
   "keywords": [
     "aws",
@@ -28,12 +28,12 @@
     "nodejs",
     "express.js"
   ],
-  "author": "ScaleUp SaaS",
+  "author": "Julio Mayen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/saasscaleup/nodejs-aws-codedeploy-pipeline/issues"
+    "url": "https://github.com/MayenRosil/wepardo-backend/issues"
   },
-  "homepage": "https://github.com/saasscaleup/nodejs-aws-codedeploy-pipeline#readme",
+  "homepage": "https://github.com/MayenRosil/wepardo-backend#readme",
   "dependencies": {
     "express": "^4.18.1"
   }
