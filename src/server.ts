@@ -9,7 +9,7 @@ import { healthRouter } from "@core/health/api/health-router";
 
 import { userRouter } from "@contexts/users/api/user-router";
 
-const allowedOrigins = ['http://wepardo.services/'];
+const allowedOrigins = ['http://wepardo.services:8080', 'http://wepardo.services:80', 'http://wepardo.services:443', 'http://wepardo.services:3001'];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins
