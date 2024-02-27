@@ -16,7 +16,7 @@ export class Server {
     this.app = express();
     this.app.use(express.json());
     this.app.use("/health", healthRouter);
-    this.app.use("/users", userRouter);
+    this.app.use("/api/users", userRouter);
     this.app.use("/", userRouter);
   }
 
