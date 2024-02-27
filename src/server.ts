@@ -1,4 +1,5 @@
 import http from "node:http";
+import cors from 'cors';
 import { AddressInfo } from "node:net";
 
 import express, { Express } from "express";
@@ -8,12 +9,19 @@ import { healthRouter } from "@core/health/api/health-router";
 
 import { userRouter } from "@contexts/users/api/user-router";
 
+const allowedOrigins = ['http://wepardo.services/'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+
 export class Server {
   private readonly app: Express;
   private httpServer?: http.Server;
 
   constructor() {
     this.app = express();
+    this.app.use(cors(options));
     this.app.use(express.json());
     this.app.use("/health", healthRouter);
     this.app.use("/api/users", userRouter);
