@@ -6,4 +6,3 @@ dist/
 coverage/
 .npm
 .vscode
-.nyc_output
