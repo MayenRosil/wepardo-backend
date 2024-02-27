@@ -21,7 +21,7 @@ export class Server {
 
   constructor() {
     this.app = express();
-    this.app.use(cors(options));
+    this.app.use(cors());
     this.app.use(express.json());
     this.app.use("/health", healthRouter);
     this.app.use("/api/users", userRouter);
