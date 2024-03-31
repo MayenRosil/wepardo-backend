@@ -15,20 +15,20 @@ export const signIn = async (req: Request, res: Response) => {
         .where("user.username = :username", { username: username })
         .getOne();
  
-        if(!user) return res.json({message: "Usuario no existe"});
+        if(!user) return res.json({message: "Usuario no existe", errorCode: 1});
 
         const exist = await bcrytp.compare(password, user.password);
-        if(!exist) return res.json({message: 'Credenciales incorrectas'});
+        if(!exist) return res.json({message: 'Credenciales incorrectas', errorCode: 1});
 
         const token: string = jwt.sign({
             username: username, id: user.id, email: user.email
         }, process.env.TOKEN_SECRET || 'generictoken',
         { expiresIn: 3600 })
 
-        return res.json({token});
+        return res.json({token, errorCode: 0});
     } catch (error) {
         if(error instanceof Error)
-            return res.status(500).json({message: error.message});
+            return res.status(500).json({message: error.message, errorCode: 2});
     }
 
 }

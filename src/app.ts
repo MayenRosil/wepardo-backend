@@ -4,6 +4,7 @@ import cors from 'cors';
 
 import userRoutes from './routes/user.route';
 import authRoutes from './routes/auth.route';
+import passwordRoutes from './routes/password.route';
 
 const app: Application = express();
 
@@ -18,6 +19,7 @@ app.use(express.json())
 //routes
 app.use('/api/test', (req: Request, res: Response) => res.json({message: "Hola Mundo"}));
 app.use('/api/users', userRoutes);
-app.use('/api/login', authRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/password', passwordRoutes);
 
 export default app;

@@ -19,11 +19,11 @@ export const createUser = async (req: Request, res: Response) => {
             ])
             .execute();
         
-        return res.json({message: "usuario creado"});
+        return res.json({message: "usuario creado", errorCode: 0});
 
     } catch (error) {
         if(error instanceof Error)
-            return res.status(500).json({message: error.message});
+            return res.status(500).json({message: error.message, errorCode: 2});
     }
 
 }
@@ -36,10 +36,10 @@ export const getUsers = async (req: Request, res: Response) => {
             .createQueryBuilder('user')
             .getMany();
         
-        return res.json(users);
+        return res.json({users, errorCode: 0});
         
     } catch (error) {
         if(error instanceof Error)
-            return res.status(500).json({message: error.message});
+            return res.status(500).json({message: error.message, errorCode: 2});
     }
 }
