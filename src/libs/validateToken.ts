@@ -18,7 +18,7 @@ export const validateToken = (req: Request, res: Response, next: NextFunction) =
         const bearerToken = headerToken.split(" ")[1];
         const payload = jwt.verify(bearerToken, process.env.TOKEN_SECRET || 'generictoken') as IPayload;
        
-        req.userId = payload.id;
+        req.userId = parseInt(payload.id);
         req.userEmail = payload.email;
         req.userUsername = payload.username;
         

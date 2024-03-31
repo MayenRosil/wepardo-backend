@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { User } from '../entities/User';
 import { AppDataSource } from '../db';
 import bcrytp from 'bcrypt';
+import {sendEmail} from '../libs/sendEmail';
 
 export const recoverPassword = async (req: Request, res: Response) => {
 
@@ -26,6 +27,9 @@ export const recoverPassword = async (req: Request, res: Response) => {
             .where("id = :id", { id: user.id })
             .execute();
         
+            
+        sendEmail(user.email, user.username, randomNumber.toString());
+
         return res.json({verificationCode: randomNumber, message: "Se ha enviado un email", errorCode: 0});
 
     } catch (error) {
@@ -79,3 +83,4 @@ export const updatePassword = async (req: Request, res: Response) => {
             return res.status(500).json({message: error.message, code: 2});
     }
 }
+
