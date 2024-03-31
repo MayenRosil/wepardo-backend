@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json())
 
 //routes
-app.use('/api', (req: Request, res: Response) => res.json({message: "Hola Mundo"}));
+//app.use('/api', (req: Request, res: Response) => res.json({message: "Hola Mundo"}));
 app.use('/api/users', userRoutes);
 app.use('/api/login', authRoutes);
 
