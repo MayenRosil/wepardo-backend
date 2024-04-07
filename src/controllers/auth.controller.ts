@@ -48,7 +48,7 @@ export const uploadImage = async (req: Request, res: Response) => {
 
         // Guardar la imagen decodificada en una carpeta local
         const nombreArchivo: string = `${username}.png`; // Nombre de archivo único basado en la fecha y hora actual
-        const rutaArchivo: string = exist ? path.join('C:/Users/mayen/Desktop/comparacion/', nombreArchivo) : path.join('C:/Users/mayen/Desktop/almacen/', nombreArchivo); // Ruta de la carpeta local donde se guardará la imagen
+        const rutaArchivo: string = exist ? path.join('/home/wepardo/comparacion/', nombreArchivo) : path.join('/home/wepardo/almacen/', nombreArchivo); // Ruta de la carpeta local donde se guardará la imagen
 
         await fs.writeFile(rutaArchivo, decodedImage, (error) => {
             if (error) {

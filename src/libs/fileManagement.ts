@@ -6,7 +6,7 @@ import { exec, spawn } from 'child_process';
 // Verifica si el archivo existe en la ruta
 export const searchLocalFile = async (nombreArchivo: string) :Promise<boolean> => {
 
-    const rutaCarpeta: string = 'C:/Users/mayen/Desktop/almacen';
+    const rutaCarpeta: string = '/home/wepardo/almacen';
     
     // Construye la ruta completa del archivo
     const rutaArchivo: string = path.join(rutaCarpeta, nombreArchivo);
@@ -28,7 +28,7 @@ export const validateFacial = async (username: string) : Promise<boolean> => {
     const rutaArchivo: string = path.join(__dirname, '/compara.py')
     
     // Comando para ejecutar el script Python
-    const comando = `python C:/Users/mayen/Desktop/compara.py C:/Users/mayen/Desktop/comparacion/${username}.png`;
+    const comando = `python3 ${rutaArchivo} /home/wepardo/comparacion/${username}.png`;
 
     return new Promise((resolve, reject) => {
         //const comando = 'python script.py'; // Comando para ejecutar el script de Python

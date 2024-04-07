@@ -51,7 +51,7 @@ def main():
     ruta_img1 = args.imagen_a_comparar
 
     # Buscar imagen en la carpeta /var/www/html/fotos
-    ruta_carpeta_fotos = "C:/Users/mayen/Desktop/almacen"
+    ruta_carpeta_fotos = "/home/wepardo/almacen"
     imagenes_en_carpeta = os.listdir(ruta_carpeta_fotos)
     print(f"listas->",imagenes_en_carpeta)
     imagen_base = None
