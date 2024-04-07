@@ -51,18 +51,19 @@ def main():
     ruta_img1 = args.imagen_a_comparar
 
     # Buscar imagen en la carpeta /var/www/html/fotos
-    ruta_carpeta_fotos = "C:/Users/mayen/Downloads"
+    ruta_carpeta_fotos = "C:/Users/mayen/Desktop/almacen"
     imagenes_en_carpeta = os.listdir(ruta_carpeta_fotos)
     print(f"listas->",imagenes_en_carpeta)
     imagen_base = None
     for imagen in imagenes_en_carpeta:
         print(f"imagenes en directorio -> ",imagen)
+        #print(os.path.join(ruta_carpeta_fotos, ruta_img1).split("/")[-1])
         #Compara tanto si es una imagen, como si el archivo se llama igual que el que esta buscando
-        if imagen.lower().endswith(('.png', '.jpg', '.jpeg')) and imagen.lower().endswith(os.path.join(ruta_carpeta_fotos, ruta_img1).split("\\")[-1]):  # Solo considerar imágenes
+        if imagen.lower().endswith(('.png', '.jpg', '.jpeg')) and imagen.lower().endswith(os.path.join(ruta_carpeta_fotos, ruta_img1).split("/")[-1]):  # Solo considerar imágenes
+        #if imagen.lower().endswith(('.png', '.jpg', '.jpeg')):
             print(f"imagen encontrada -> ",imagen)
             imagen_base = os.path.join(ruta_carpeta_fotos, imagen)
             # break
-   
     #    if imagen_base is None:
     #        print("No se encontraron imágenes en la carpeta /var/www/html/fotos")
     #        return
@@ -75,6 +76,7 @@ def main():
 
             if len(rostros_img1) == 0 or len(rostros_img2) == 0:
                 print("No se detectó ningún rostro en al menos una de las imágenes.")
+                print(False)
                 return
 
             # Tomar el primer rostro detectado en cada imagen
@@ -89,11 +91,13 @@ def main():
             if distancia < umbral:
                 nombre_archivo_base = obtener_nombre_sin_extension(imagen_base)
                 print(f"Bienvenid@ {nombre_archivo_base}")
-                return True
+                print(True)
+                #return True
                 break
             else:
                 print("Las imágenes contienen personas diferentes.")
-                return False
+                print(False)
+                #return False
 
 if __name__ == "__main__":
     main()
