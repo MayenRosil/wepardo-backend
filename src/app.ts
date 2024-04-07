@@ -16,8 +16,8 @@ app.set('port', 3000)
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json({limit: '100mb'}));
-app.use(bodyParser.json({ limit: '100mb' }));
-app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
+app.use(bodyParser.json({ limit: '200mb' }));
+app.use(bodyParser.urlencoded({ limit: '200mb', extended: true, parameterLimit: 1000000 }));
 
 //routes
 app.use('/api/test', (req: Request, res: Response) => res.json({message: "Hola Mundo"}));
