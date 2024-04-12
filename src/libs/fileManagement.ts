@@ -28,7 +28,7 @@ export const validateFacial = async (username: string) : Promise<boolean> => {
     const rutaArchivo: string = path.join(__dirname, '/compara.py')
     
     // Comando para ejecutar el script Python
-    const comando = `python3 ${rutaArchivo} /home/wepardo/comparacion/${username}.png`;
+    const comando = `python3 /home/wepardo/compara.py /home/wepardo/comparacion/${username}.png`;
 
     return new Promise((resolve, reject) => {
         //const comando = 'python script.py'; // Comando para ejecutar el script de Python
