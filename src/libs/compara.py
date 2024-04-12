@@ -2,6 +2,7 @@ import argparse
 import os
 import cv2
 import numpy as np
+from decouple import config
 
 def cargar_imagenes(ruta_img1, ruta_img2):
     img1 = cv2.imread(ruta_img1)
@@ -40,6 +41,7 @@ def obtener_nombre_sin_extension(ruta):
     return nombre_archivo
 
 def main():
+    API_RUTA_ALMACEN = config('RUTA_CARPETA_ALMACEN')
     # Configuración de argumentos de la línea de comandos
     parser = argparse.ArgumentParser(description="Comparar imágenes de rostros y dar la bienvenida si coinciden.")
     parser.add_argument("imagen_a_comparar", help="Nombre de la imagen a comparar")
@@ -51,7 +53,7 @@ def main():
     ruta_img1 = args.imagen_a_comparar
 
     # Buscar imagen en la carpeta /var/www/html/fotos
-    ruta_carpeta_fotos = "/home/wepardo/almacen"
+    ruta_carpeta_fotos = API_RUTA_ALMACEN
     imagenes_en_carpeta = os.listdir(ruta_carpeta_fotos)
     print(f"listas->",imagenes_en_carpeta)
     imagen_base = None
