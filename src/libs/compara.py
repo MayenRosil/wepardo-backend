@@ -13,8 +13,8 @@ def detectar_rostros(imagen):
     gray = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     #ajustamos los parametros para que reconozca a las personas
-    scale_factor = 1.3
-    min_neighbors = 10
+    scale_factor = 1 #variable que controla el tamaño maximo de ampliacion o escala
+    min_neighbors = 4 # variable que controla los 
     #antiguos 1.3 y 5
     rostros = face_cascade.detectMultiScale(gray, scaleFactor = scale_factor, minNeighbors=min_neighbors)
 
