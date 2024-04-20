@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { User } from '../entities/User';
 import { AppDataSource } from '../db';
 import bcrytp from 'bcrypt';
-import {sendEmail} from '../libs/sendEmail';
+import {emailSender} from '../libs/mailSender';
 
 export const recoverPassword = async (req: Request, res: Response) => {
 
@@ -28,7 +28,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
             .execute();
         
             
-        sendEmail(user.email, user.username, randomNumber.toString());
+        emailSender(user.email, user.username, randomNumber.toString());
 
         return res.json({verificationCode: randomNumber, message: "Se ha enviado un email", errorCode: 0});
 
