@@ -28,7 +28,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
             .execute();
         
             
-        emailSender(user.email, user.username, randomNumber.toString());
+        await emailSender(user.email, user.username, randomNumber.toString());
 
         return res.json({verificationCode: randomNumber, message: "Se ha enviado un email", errorCode: 0});
 

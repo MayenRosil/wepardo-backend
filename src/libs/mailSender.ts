@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   host: "smtp.zoho.com",
   port: 465,
-  secure: false, // Use `true` for port 465, `false` for all other ports
+  secure: true, // Use `true` for port 465, `false` for all other ports
   auth: {
     user: "admin@wepardo.services",
     pass: "Wepardos2024$$",
