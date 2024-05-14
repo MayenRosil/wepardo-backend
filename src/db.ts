@@ -1,5 +1,8 @@
 import { DataSource } from 'typeorm';
 import { User } from './entities/User';
+import { Department } from './entities/Department';
+import { Position } from './entities/Position';
+import { Employee } from './entities/Employee';
 
 export const AppDataSource = new DataSource({
     type: 'mysql',
@@ -10,7 +13,7 @@ export const AppDataSource = new DataSource({
     database: "wepardo",
     synchronize: true,
     logging: true,
-    entities: [User],
+    entities: [User, Department, Position, Employee],
     subscribers: [],
     migrations: [],
 });

@@ -6,6 +6,9 @@ import bodyParser from 'body-parser';
 import userRoutes from './routes/user.route';
 import authRoutes from './routes/auth.route';
 import passwordRoutes from './routes/password.route';
+import employeeRoutes from './routes/employee.route';
+import positionRoutes from './routes/position.route';
+import departmentRoutes from './routes/department.route';
 
 const app: Application = express();
 
@@ -24,5 +27,8 @@ app.use('/api/test', (req: Request, res: Response) => res.json({message: "Hola M
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/password', passwordRoutes);
+app.use('/api/employee', employeeRoutes);
+app.use('/api/position', positionRoutes);
+app.use('/api/department', departmentRoutes);
 
 export default app;
