@@ -9,6 +9,7 @@ import passwordRoutes from './routes/password.route';
 import employeeRoutes from './routes/employee.route';
 import positionRoutes from './routes/position.route';
 import departmentRoutes from './routes/department.route';
+import logRecordRoutes from './routes/logrecord.route';
 
 const app: Application = express();
 
@@ -30,5 +31,6 @@ app.use('/api/password', passwordRoutes);
 app.use('/api/employee', employeeRoutes);
 app.use('/api/position', positionRoutes);
 app.use('/api/department', departmentRoutes);
+app.use('/api/logs', logRecordRoutes);
 
 export default app;
