@@ -10,6 +10,7 @@ import employeeRoutes from './routes/employee.route';
 import positionRoutes from './routes/position.route';
 import departmentRoutes from './routes/department.route';
 import logRecordRoutes from './routes/logrecord.route';
+import exchangeRoutes from './routes/exchange.route';
 
 const app: Application = express();
 
@@ -32,5 +33,6 @@ app.use('/api/employee', employeeRoutes);
 app.use('/api/position', positionRoutes);
 app.use('/api/department', departmentRoutes);
 app.use('/api/logs', logRecordRoutes);
+app.use('/api/exchange', exchangeRoutes);
 
 export default app;

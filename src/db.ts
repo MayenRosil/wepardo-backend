@@ -8,6 +8,8 @@ import { LogRecord } from './entities/LogRecord';
 import { DepartmentSubscriber } from './subscribers/DepartmentSubscriber';
 import { PositionSubscriber } from './subscribers/PositionSubscriber';
 import { EmployeeSubscriber } from './subscribers/EmployeeSubscriber';
+import { ExchangeSubscriber } from './subscribers/ExchangeSubscriber';
+import { Exchange } from './entities/exchange';
 
 export const AppDataSource = new DataSource({
     type: 'mysql',
@@ -18,7 +20,7 @@ export const AppDataSource = new DataSource({
     database: "wepardo",
     synchronize: true,
     logging: true,
-    entities: [User, Department, Position, Employee, LogRecord],
-    subscribers: [UserSubscriber, DepartmentSubscriber, PositionSubscriber, EmployeeSubscriber],
+    entities: [User, Department, Position, Employee, LogRecord, Exchange],
+    subscribers: [UserSubscriber, DepartmentSubscriber, PositionSubscriber, EmployeeSubscriber, ExchangeSubscriber],
     migrations: [],
 });

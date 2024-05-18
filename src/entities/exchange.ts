@@ -1,25 +1,19 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
 
 @Entity()
-export class User extends BaseEntity {
+export class Exchange extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({length: 50})
-    username: string
+    @Column({})
+    image: string
 
     @Column()
-    password: string
-
-    @Column({length: 75})
-    email: string
+    name: string
 
     @Column({default: 0})
-    recoveryCode: number
-
-    @Column({default: 0})
-    exchangePoints: number
+    points: number
 
     @Column({default: true})
     active: boolean
