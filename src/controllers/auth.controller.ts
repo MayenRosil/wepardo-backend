@@ -27,7 +27,8 @@ export const signIn = async (req: Request, res: Response) => {
         const token: string = jwt.sign({
             username: username, id: user.id, email: user.email
         }, process.env.TOKEN_SECRET || 'generictoken',
-            { expiresIn: 3600 })
+        //    { expiresIn: 3600 }
+        )
 
 
         return res.json({ token, errorCode: 0, imageExist: await searchLocalFile(`${username}.png`) });

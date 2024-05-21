@@ -28,3 +28,21 @@ export const createPosition = async (req: Request, res: Response) => {
     }
 
 }
+
+export const getPositions = async (req: Request, res: Response) => {
+    try {
+
+        const positions = await AppDataSource
+            .getRepository(Position)
+            .createQueryBuilder('position')
+            .innerJoinAndSelect('position.department', 'department')
+            .getMany();
+
+        return res.json({ positions, errorCode: 0 });
+
+    } catch (error) {
+        if (error instanceof Error)
+            return res.status(500).json({ message: error.message, errorCode: 2 });
+    }
+
+}

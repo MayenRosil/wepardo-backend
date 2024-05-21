@@ -28,3 +28,20 @@ export const createDepartment = async (req: Request, res: Response) => {
     }
 
 }
+
+export const getDepartments = async (req: Request, res: Response) => {
+    try {
+
+        const departamentos = await AppDataSource
+            .getRepository(Department)
+            .createQueryBuilder('department')
+            .getMany();
+
+        return res.json({ departamentos, errorCode: 0 });
+
+    } catch (error) {
+        if (error instanceof Error)
+            return res.status(500).json({ message: error.message, errorCode: 2 });
+    }
+
+}
