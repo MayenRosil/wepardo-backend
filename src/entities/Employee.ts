@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity, OneToOne, JoinColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { Department } from './Department';
 import { User } from './User';
 import { Position } from './Position';
@@ -30,7 +30,7 @@ export class Employee extends BaseEntity {
     @OneToOne(type => User) @JoinColumn() 
     user: User;
     
-    @OneToOne(type => Position) @JoinColumn() 
+    @ManyToOne(() => Position)
     position: Position;
 
     @CreateDateColumn()

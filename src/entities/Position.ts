@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity, OneToOne, JoinColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity, OneToOne, ManyToOne } from 'typeorm';
 import { Department } from './Department';
 
 @Entity()
@@ -13,7 +13,7 @@ export class Position extends BaseEntity {
     @Column()
     salary: number
 
-    @OneToOne(type => Department) @JoinColumn() 
+    @ManyToOne(() => Department, department => department.positions)
     department: Department;
 
     @CreateDateColumn()
