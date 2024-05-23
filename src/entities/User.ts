@@ -18,7 +18,7 @@ export class User extends BaseEntity {
     @Column({default: 0})
     recoveryCode: number
 
-    @Column({default: 0})
+    @Column({default: 100})
     exchangePoints: number
 
     @Column({default: true})

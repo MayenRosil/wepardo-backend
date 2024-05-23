@@ -36,6 +36,7 @@ export const getEmployees = async (req: Request, res: Response) => {
             .createQueryBuilder('employee')
             .innerJoinAndSelect('employee.user', 'user')
             .innerJoinAndSelect('employee.position', 'position')
+            .innerJoinAndSelect('position.department', 'department')
             .getMany();
 
         return res.json({ employees, errorCode: 0 });
