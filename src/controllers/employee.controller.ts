@@ -49,9 +49,6 @@ export const getEmployees = async (req: Request, res: Response) => {
 
 
 export const deleteEmployee = async (req: Request, res: Response) => {
-
-
-
     try {
 
         const { employee } = req.params;
@@ -65,6 +62,29 @@ export const deleteEmployee = async (req: Request, res: Response) => {
 
 
         return res.json({ message: "empleado eliminado", errorCode: 0 });
+
+    } catch (error) {
+        if (error instanceof Error)
+            return res.status(500).json({ message: error.message, errorCode: 2 });
+    }
+}
+
+
+export const promoteEmployee = async (req: Request, res: Response) => {
+    try {
+
+        const { employee, position } = req.body;
+
+        await AppDataSource
+            .getRepository(Employee)
+            .createQueryBuilder('employee')
+            .update(employee)
+            .set({ position: position })
+            .where("id = :id", { id: employee })
+            .execute();
+
+
+        return res.json({ message: "empleado ascendido", errorCode: 0 });
 
     } catch (error) {
         if (error instanceof Error)
