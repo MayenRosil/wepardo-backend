@@ -5,6 +5,7 @@ import bcrytp from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import path from 'path';
+import {uploadToS3} from '../libs/manageS3';
 
 import { searchLocalFile, validateFacial } from '../libs/fileManagement';
 
@@ -57,6 +58,10 @@ export const uploadImage = async (req: Request, res: Response) => {
                 return res.json({ message: 'Error al guardar la imagen', errorCode: 1 });
             } else {
                 if (!exist) return res.json({ message: "Imagen guardada", errorCode: 0 });
+
+                //subir imagen a S3
+                uploadToS3(rutaArchivo, nombreArchivo);
+                return res.json({ message: 'Imagen subida a S3', errorCode: 0 });
 
                 // Validar coincidencia facial
                 validateFacial(username)
