@@ -52,7 +52,7 @@ export const uploadImage = async (req: Request, res: Response) => {
         const nombreArchivo: string = `${username}.png`; // Nombre de archivo único basado en la fecha y hora actual
         const rutaArchivo: string = exist ? path.join(`${process.env.RUTA_CARPETA_COMPARACION}`, nombreArchivo) : path.join(`${process.env.RUTA_CARPETA_ALMACEN}/`, nombreArchivo); // Ruta de la carpeta local donde se guardará la imagen
 
-        await fs.writeFile(rutaArchivo, decodedImage, (error) => {
+        await fs.writeFile(rutaArchivo, decodedImage, async (error) => {
             if (error) {
                 console.log(error)
                 return res.json({ message: 'Error al guardar la imagen', errorCode: 1 });
@@ -60,7 +60,7 @@ export const uploadImage = async (req: Request, res: Response) => {
                 if (!exist) return res.json({ message: "Imagen guardada", errorCode: 0 });
 
                 //subir imagen a S3
-                uploadToS3(rutaArchivo, nombreArchivo);
+                await uploadToS3(rutaArchivo, nombreArchivo);
                 return res.json({ message: 'Imagen subida a S3', errorCode: 0 });
 
                 // Validar coincidencia facial
