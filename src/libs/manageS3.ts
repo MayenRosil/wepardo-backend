@@ -34,7 +34,6 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
           Key: 'users/almacen/MayenRosil', // Nombre del archivo en S3
           Body: fileContent,
           ContentType: 'image/png', // Cambia esto si el tipo de archivo es diferente
-          ACL: 'public-read' as ObjectCannedACL
         };
 
 
