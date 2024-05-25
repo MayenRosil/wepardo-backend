@@ -61,10 +61,10 @@ export const uploadImage = async (req: Request, res: Response) => {
 
                 //subir imagen a S3
                 uploadToS3(rutaArchivo, nombreArchivo)
-  .then(success => {
+  .then(async success => {
     if (success) {
       console.log('Imagen subida con éxito');
-      compareFaces();
+      await compareFaces();
     } else {
       console.log('Error subiendo la imagen');
     }

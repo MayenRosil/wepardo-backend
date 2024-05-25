@@ -97,6 +97,8 @@ export const compareFaces = async (): Promise<void> => {
         },
         SimilarityThreshold: 90
       };
+
+      console.log(params, 'los parametros para rekognition')
   
       const command = new CompareFacesCommand(params);
       const response = await rekognitionClient.send(command);
