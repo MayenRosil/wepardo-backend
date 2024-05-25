@@ -60,7 +60,14 @@ export const uploadImage = async (req: Request, res: Response) => {
                 if (!exist) return res.json({ message: "Imagen guardada", errorCode: 0 });
 
                 //subir imagen a S3
-                await uploadToS3(rutaArchivo, nombreArchivo);
+                uploadToS3(rutaArchivo, nombreArchivo)
+  .then(success => {
+    if (success) {
+      console.log('Imagen subida con éxito');
+    } else {
+      console.log('Error subiendo la imagen');
+    }
+  });
                 return res.json({ message: 'Imagen subida a S3', errorCode: 0 });
 
                 // Validar coincidencia facial

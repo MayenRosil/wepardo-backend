@@ -1,5 +1,5 @@
 
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, PutObjectCommandOutput } from '@aws-sdk/client-s3';
 import path from 'path';
 import fs from 'fs';
 
@@ -11,6 +11,11 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
         const filePath = path.join(rutaArchivoLocal);
 
         console.log(filePath, 'aca esta la imagen')
+
+        if (!fs.existsSync(filePath)) {
+            console.error(`El archivo no existe en la ruta: ${filePath}`);
+            return false;
+          }
 
         const s3Client = new S3Client({
 
@@ -31,12 +36,15 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
           ContentType: 'image/png' // Cambia esto si el tipo de archivo es diferente
         };
 
+
         const command = new PutObjectCommand(params);
-        console.log(command, 'el comando')
-        console.log('-----')
-        const response = await s3Client.send(command);
-        console.log(response, 'la respuesta')
+        console.log(command, 'el comando');
+        console.log('-----');
     
+        const response: PutObjectCommandOutput = await s3Client.send(command);
+        console.log(response, 'la respuesta');
+    
+        console.log('Archivo subido exitosamente a S3');
         return true;
 
     } catch (err) {
