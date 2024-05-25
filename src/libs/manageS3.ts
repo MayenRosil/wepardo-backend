@@ -86,13 +86,13 @@ export const compareFaces = async (): Promise<void> => {
         SourceImage: {
           S3Object: {
             Bucket: 'wepardo-resources',
-            Name: 'users/almacen/MayenRosil.png'
+            Name: 'users/almacen/MayenRosil'
           }
         },
         TargetImage: {
           S3Object: {
             Bucket: 'wepardo-resources',
-            Name: 'users/comparacion/MayenRosil.png'
+            Name: 'users/comparacion/MayenRosil'
           }
         },
         SimilarityThreshold: 90
