@@ -7,8 +7,10 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
 
     try {
 
-
+        
         const filePath = path.join(rutaArchivoLocal);
+
+        console.log(filePath, 'aca esta la imagen')
 
         const s3Client = new S3Client({
 
@@ -29,6 +31,7 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
         };
 
         const command = new PutObjectCommand(params);
+        console.log(command, 'el comando')
         await s3Client.send(command);   
     
         return true;
