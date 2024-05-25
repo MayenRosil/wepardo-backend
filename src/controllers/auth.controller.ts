@@ -58,6 +58,9 @@ export const uploadImage = async (req: Request, res: Response) => {
             } else {
                 if (!exist) return res.json({ message: "Imagen guardada", errorCode: 0 });
 
+                
+                return res.json({ message: "Imagenes coinciden", errorCode: 0 });
+
                 // Validar coincidencia facial
                 validateFacial(username)
                     .then((resultado) => {
