@@ -46,16 +46,16 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
 
 
         const command1 = new PutObjectCommand(params1);
-        console.log(command1, 'el comando');
+        //console.log(command1, 'el comando');
         const response1: PutObjectCommandOutput = await s3Client.send(command1);
-        console.log(response1, 'la respuesta');
+        //console.log(response1, 'la respuesta');
 
         
 
         const command2 = new PutObjectCommand(params2);
-        console.log(command2, 'el comando');
+        //console.log(command2, 'el comando');
         const response2: PutObjectCommandOutput = await s3Client.send(command2);
-        console.log(response2, 'la respuesta');
+        //console.log(response2, 'la respuesta');
     
         console.log('Archivo subido exitosamente a S3');
         return true;
@@ -99,6 +99,8 @@ export const compareFaces = async (): Promise<void> => {
   
       const command = new CompareFacesCommand(params);
       const response = await rekognitionClient.send(command);
+
+      console.log(response, 'la respuesta')
   
       if (response.FaceMatches && response.FaceMatches.length > 0) {
         console.log('Los rostros coinciden:', response.FaceMatches);
