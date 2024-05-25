@@ -22,6 +22,7 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
         });
 
         const fileContent = fs.readFileSync(filePath);
+        console.log(fileContent, 'el contenido')
 
         const params = {
           Bucket: 's3://wepardo-resources/users/almacen/',
