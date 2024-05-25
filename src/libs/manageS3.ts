@@ -24,7 +24,7 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
         const fileContent = fs.readFileSync(filePath);
 
         const params = {
-          Bucket: 's3://wepardo-resources/users/comparacion/',
+          Bucket: 's3://wepardo-resources/users/almacen/',
           Key: nombreArchivo, // Nombre del archivo en S3
           Body: fileContent,
           ContentType: 'image/png' // Cambia esto si el tipo de archivo es diferente
