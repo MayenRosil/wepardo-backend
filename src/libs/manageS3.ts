@@ -33,6 +33,7 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
 
         const command = new PutObjectCommand(params);
         console.log(command, 'el comando')
+        console.log('-----')
         const response = await s3Client.send(command);
         console.log(response, 'la respuesta')
     
