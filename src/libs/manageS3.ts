@@ -1,5 +1,5 @@
 
-import { S3Client, PutObjectCommand, PutObjectCommandOutput } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, PutObjectCommandOutput, ObjectCannedACL } from '@aws-sdk/client-s3';
 import path from 'path';
 import fs from 'fs';
 
@@ -33,7 +33,8 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
           Bucket: 'wepardo-resources',
           Key: 'users/almacen/MayenRosil', // Nombre del archivo en S3
           Body: fileContent,
-          ContentType: 'image/png' // Cambia esto si el tipo de archivo es diferente
+          ContentType: 'image/png', // Cambia esto si el tipo de archivo es diferente
+          ACL: 'public-read' as ObjectCannedACL
         };
 
 
