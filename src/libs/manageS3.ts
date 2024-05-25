@@ -11,11 +11,12 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
         const filePath = path.join(rutaArchivoLocal);
 
         const s3Client = new S3Client({
-            region: 'us-east-1',
+
             credentials: {
-                accessKeyId: 'AKIAQ3EGRYYGABQVWFGS',
-                secretAccessKey: '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'
-            }
+                accessKeyId: process.env.AWS_ACCESS_KEY || '',
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+            },
+            region: process.env.AWS_REGION || ''
         });
 
         const fileContent = fs.readFileSync(filePath);
