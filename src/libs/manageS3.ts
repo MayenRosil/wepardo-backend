@@ -1,5 +1,6 @@
 
 import { S3Client, PutObjectCommand, PutObjectCommandOutput, ObjectCannedACL } from '@aws-sdk/client-s3';
+import { RekognitionClient, CompareFacesCommand } from '@aws-sdk/client-rekognition';
 import path from 'path';
 import fs from 'fs';
 
@@ -65,3 +66,47 @@ export const uploadToS3 = async (rutaArchivoLocal: string, nombreArchivo: string
 
 
 }
+
+
+
+
+export const compareFaces = async (): Promise<void> => {
+    try {
+
+        const rekognitionClient = new RekognitionClient({
+            region: process.env.AWS_REGION,
+            credentials: {
+              accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+              secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!
+            }
+          });
+
+      const params = {
+        SourceImage: {
+          S3Object: {
+            Bucket: 'wepardo-resources',
+            Name: 'users/almacen/MayenRosil.png'
+          }
+        },
+        TargetImage: {
+          S3Object: {
+            Bucket: 'wepardo-resources',
+            Name: 'users/comparacion/MayenRosil.png'
+          }
+        },
+        SimilarityThreshold: 90
+      };
+  
+      const command = new CompareFacesCommand(params);
+      const response = await rekognitionClient.send(command);
+  
+      if (response.FaceMatches && response.FaceMatches.length > 0) {
+        console.log('Los rostros coinciden:', response.FaceMatches);
+      } else {
+        console.log('Los rostros no coinciden o la similitud es menor al umbral.');
+      }
+  
+    } catch (err) {
+      console.error('Error comparando rostros:', err);
+    }
+  };

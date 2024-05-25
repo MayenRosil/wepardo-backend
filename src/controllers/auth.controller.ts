@@ -5,7 +5,7 @@ import bcrytp from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import path from 'path';
-import {uploadToS3} from '../libs/manageS3';
+import {uploadToS3,compareFaces} from '../libs/manageS3';
 
 import { searchLocalFile, validateFacial } from '../libs/fileManagement';
 
@@ -64,6 +64,7 @@ export const uploadImage = async (req: Request, res: Response) => {
   .then(success => {
     if (success) {
       console.log('Imagen subida con éxito');
+      compareFaces();
     } else {
       console.log('Error subiendo la imagen');
     }
