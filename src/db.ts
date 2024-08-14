@@ -9,7 +9,7 @@ import { DepartmentSubscriber } from './subscribers/DepartmentSubscriber';
 import { PositionSubscriber } from './subscribers/PositionSubscriber';
 import { EmployeeSubscriber } from './subscribers/EmployeeSubscriber';
 import { ExchangeSubscriber } from './subscribers/ExchangeSubscriber';
-import { Exchange } from './entities/Exchange';
+import { ExchangeHistory } from './entities/ExchangeHistory';
 import { Product } from './entities/Product';
 import { AttendanceHistory } from './entities/AttendanceHistory';
 import { Role } from './entities/Role';
@@ -24,7 +24,7 @@ export const AppDataSource = new DataSource({
     database: "wepardo",
     synchronize: true,
     logging: true,
-    entities: [User, Department, Position, Employee, LogRecord, Exchange, Product, AttendanceHistory, Role, Company],
+    entities: [User, Department, Position, Employee, LogRecord, ExchangeHistory, Product, AttendanceHistory, Role, Company],
     subscribers: [UserSubscriber, DepartmentSubscriber, PositionSubscriber, EmployeeSubscriber, ExchangeSubscriber],
     migrations: [],
 });

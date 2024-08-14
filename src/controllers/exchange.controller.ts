@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import bcrytp from 'bcrypt';
 import { AppDataSource } from '../db';
-import { Exchange } from '../entities/Exchange';
+import { ExchangeHistory } from '../entities/ExchangeHistory';
 import { User } from '../entities/User';
 
 export const getExchangeCatalog = async (req: Request, res: Response) => {
     try {
 
         const exchangeCatalog = await AppDataSource
-            .getRepository(Exchange)
+            .getRepository(ExchangeHistory)
             .createQueryBuilder('exchange')
             .getMany();
 
@@ -28,10 +28,10 @@ export const createExchangeItem = async (req: Request, res: Response) => {
         const { image, name, points } = req.body;
 
         await AppDataSource
-            .getRepository(Exchange)
+            .getRepository(ExchangeHistory)
             .createQueryBuilder('exchange')
             .insert()
-            .into(Exchange)
+            .into(ExchangeHistory)
             .values([
                 { image, name, points }
             ])

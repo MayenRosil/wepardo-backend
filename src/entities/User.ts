@@ -1,7 +1,7 @@
 import { OneToMany, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity, OneToOne, JoinColumn } from 'typeorm';
 import { Employee } from './Employee';
 import { Company } from './Company';
-import { Exchange } from './Exchange';
+import { ExchangeHistory } from './ExchangeHistory';
 import { Role } from './Role';
 import { AttendanceHistory } from './AttendanceHistory';
 
@@ -36,8 +36,8 @@ export class User extends BaseEntity {
     @Column({default: 100})
     exchangePoints: number
 
-    @OneToMany(() => Exchange, exchange => exchange.user)
-    exchanges: Exchange[];
+    @OneToMany(() => ExchangeHistory, exchange => exchange.user)
+    exchanges: ExchangeHistory[];
 
     @Column({default: true})
     active: boolean

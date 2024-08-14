@@ -3,7 +3,7 @@ import { User } from './User';
 import { Product } from './Product';
 
 @Entity()
-export class Exchange extends BaseEntity {
+export class ExchangeHistory extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number
