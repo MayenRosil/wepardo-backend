@@ -2,7 +2,7 @@ import { EventSubscriber, EntitySubscriberInterface, Entity, PrimaryGeneratedCol
 import { AfterQueryEvent, BeforeQueryEvent } from 'typeorm/subscriber/event/QueryEvent';
 import { AppDataSource } from '../db';
 import { LogRecord } from '../entities/LogRecord';
-import { Exchange } from '../entities/exchange';
+import { Exchange } from '../entities/Exchange';
 
 @EventSubscriber()
 export class ExchangeSubscriber implements EntitySubscriberInterface<Exchange> {

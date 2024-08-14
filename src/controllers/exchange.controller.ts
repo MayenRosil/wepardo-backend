@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrytp from 'bcrypt';
 import { AppDataSource } from '../db';
-import { Exchange } from '../entities/exchange';
+import { Exchange } from '../entities/Exchange';
 import { User } from '../entities/User';
 
 export const getExchangeCatalog = async (req: Request, res: Response) => {

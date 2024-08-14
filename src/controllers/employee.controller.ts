@@ -15,7 +15,7 @@ export const createEmployee = async (req: Request, res: Response) => {
             .insert()
             .into(Employee)
             .values([
-                { firstName, secondName, firstLastName, secondLastName, CUI, NIT, user, position }
+                { firstName, secondName, firstLastName, secondLastName, CUI, NIT, position }
             ])
             .execute();
 

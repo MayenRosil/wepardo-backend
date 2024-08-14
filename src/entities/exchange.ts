@@ -1,10 +1,16 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
+import { OneToOne, JoinColumn, ManyToOne, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
+import { User } from './User';
+import { Product } from './Product';
 
 @Entity()
 export class Exchange extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number
+
+    
+    @ManyToOne(() => User, user => user.exchanges)
+    user: User;
 
     @Column({})
     image: string
@@ -14,6 +20,9 @@ export class Exchange extends BaseEntity {
 
     @Column({default: 0})
     points: number
+
+    @OneToOne(type => Product) @JoinColumn() 
+    product: Product;
 
     @Column({default: true})
     active: boolean

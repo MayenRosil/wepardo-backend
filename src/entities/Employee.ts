@@ -26,9 +26,6 @@ export class Employee extends BaseEntity {
 
     @Column({length: 10})
     NIT: string
-
-    @OneToOne(type => User) @JoinColumn() 
-    user: User;
     
     @ManyToOne(() => Position)
     position: Position;
