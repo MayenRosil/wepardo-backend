@@ -17,7 +17,7 @@ export const signIn = async (req: Request, res: Response) => {
             .getRepository(User)
             .createQueryBuilder('user')
             .where("user.username = :username", { username: username })
-            .andWhere("user.employee.company = :company", { company: company })
+            .andWhere("user.employee.companyId = :company", { company: company })
             .getOne();
 
         if (!user) return res.json({ message: "Usuario no existe o no pertenece a la empresa", errorCode: 1 });
