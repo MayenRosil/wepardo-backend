@@ -11,21 +11,25 @@ import { searchLocalFile, validateFacial } from '../libs/fileManagement';
 export const signIn = async (req: Request, res: Response) => {
 
     try {
-        const { username, password } = req.body;
+        const { username, password, company } = req.body;
 
         const user = await AppDataSource
             .getRepository(User)
             .createQueryBuilder('user')
             .where("user.username = :username", { username: username })
+            .andWhere("user.employee.company = :company", { company: company })
             .getOne();
 
-        if (!user) return res.json({ message: "Usuario no existe", errorCode: 1 });
+        if (!user) return res.json({ message: "Usuario no existe o no pertenece a la empresa", errorCode: 1 });
+
+        const {active} = user;
+        if(!active) return res.json({ message: "Usuario inactivo", errorCode: 1 });
 
         const exist = await bcrytp.compare(password, user.password);
         if (!exist) return res.json({ message: 'Credenciales incorrectas', errorCode: 1 });
 
         const token: string = jwt.sign({
-            username: username, id: user.id, email: user.email
+            username: username, id: user.id, email: user.email, company: company
         }, process.env.TOKEN_SECRET || 'generictoken',
         //    { expiresIn: 3600 }
         )
@@ -59,7 +63,7 @@ export const uploadImage = async (req: Request, res: Response) => {
                 if (!exist) return res.json({ message: "Imagen guardada", errorCode: 0 });
 
                 
-                //return res.json({ message: "Imagenes coinciden", errorCode: 0 });
+                return res.json({ message: "Imagenes coinciden", errorCode: 0 });
 
                 // Validar coincidencia facial
                 validateFacial(username)

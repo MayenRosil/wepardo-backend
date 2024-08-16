@@ -27,8 +27,8 @@ export class User extends BaseEntity {
     @OneToOne(type => Role) @JoinColumn() 
     role: Role;
 
-    @OneToOne(type => Company) @JoinColumn() 
-    company: Company;
+    // @OneToOne(type => Company) @JoinColumn() 
+    // company: Company;
 
     @Column({default: 0})
     recoveryCode: number

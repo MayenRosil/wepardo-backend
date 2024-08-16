@@ -7,6 +7,7 @@ interface IPayload {
     exp: number
     username: string
     email: string
+    company: string
 }
 
 export const validateToken = (req: Request, res: Response, next: NextFunction) => {
@@ -21,6 +22,7 @@ export const validateToken = (req: Request, res: Response, next: NextFunction) =
         req.userId = parseInt(payload.id);
         req.userEmail = payload.email;
         req.userUsername = payload.username;
+        req.userCompany = payload.company;
         
         next();
     } catch (error) {

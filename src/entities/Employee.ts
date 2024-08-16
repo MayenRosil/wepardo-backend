@@ -2,6 +2,7 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 import { Department } from './Department';
 import { User } from './User';
 import { Position } from './Position';
+import { Company } from './Company';
 
 @Entity()
 export class Employee extends BaseEntity {
@@ -29,6 +30,9 @@ export class Employee extends BaseEntity {
     
     @ManyToOne(() => Position)
     position: Position;
+
+    @OneToOne(type => Company) @JoinColumn() 
+    company: Company;
 
     @CreateDateColumn()
     createdAt: Date
