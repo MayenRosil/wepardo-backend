@@ -34,6 +34,10 @@ export class Employee extends BaseEntity {
     @OneToOne(type => Company) @JoinColumn() 
     company: Company;
 
+    
+    @OneToOne(type => User) @JoinColumn() 
+    user: User;
+
     @CreateDateColumn()
     createdAt: Date
 
