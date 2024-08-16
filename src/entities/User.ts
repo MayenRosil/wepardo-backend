@@ -1,4 +1,4 @@
-import { OneToMany, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity, OneToOne, JoinColumn } from 'typeorm';
+import { OneToMany, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, BaseEntity, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { Employee } from './Employee';
 import { Company } from './Company';
 import { ExchangeHistory } from './ExchangeHistory';
@@ -24,11 +24,11 @@ export class User extends BaseEntity {
     employee: Employee;
 
     
-    @OneToOne(type => Role) @JoinColumn() 
+    @ManyToOne(type => Role) @JoinColumn() 
     role: Role;
 
-    // @OneToOne(type => Company) @JoinColumn() 
-    // company: Company;
+    @ManyToOne(type => Company) @JoinColumn() 
+    company: Company;
 
     @Column({default: 0})
     recoveryCode: number

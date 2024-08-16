@@ -18,16 +18,10 @@ export const signIn = async (req: Request, res: Response) => {
             .getRepository(User)
             .createQueryBuilder('user')
             .where("user.username = :username", { username: username })
+            .andWhere("user.companyId = :company", { company: company })
             .getOne();
-        if (!user) return res.json({ message: "Usuario no existe", errorCode: 1 });
+        if (!user) return res.json({ message: "Usuario no existe o no pertenece a la empresa", errorCode: 1 });
 
-        const employee = await AppDataSource
-        .getRepository(Employee)
-        .createQueryBuilder('employee')
-        .where("employee.companyId = :company", { company: company })
-        .andWhere("employee.userId = :user", { user: user.id })
-        .getOne();
-        if (!employee) return res.json({ message: "Usuario no pertenece a la empresa", errorCode: 1 });
 
 
         if(!user.active) return res.json({ message: "Usuario inactivo", errorCode: 1 });

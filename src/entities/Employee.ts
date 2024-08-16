@@ -31,12 +31,12 @@ export class Employee extends BaseEntity {
     @ManyToOne(() => Position)
     position: Position;
 
-    @OneToOne(type => Company) @JoinColumn() 
+    @ManyToOne(type => Company) @JoinColumn() 
     company: Company;
 
     
-    @OneToOne(type => User) @JoinColumn() 
-    user: User;
+    // @OneToOne(type => User) @JoinColumn() 
+    // user: User;
 
     @CreateDateColumn()
     createdAt: Date

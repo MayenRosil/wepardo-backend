@@ -6,10 +6,10 @@ import { AppDataSource } from '../db';
 export const createUser = async (req: Request, res: Response) => {
 
     try {
-        const {username, password, email} = req.body;
+        const {username, password, email, company, employee, role} = req.body;
         const hashedPassword = await bcrytp.hash(password, 10);
 
-        if(!username || !password || !email){
+        if(!username || !password || !email || !company || !employee || !role){
             return res.json({message: "Ingresar todos los campos", errorCode: 1});
         }
 
@@ -19,7 +19,7 @@ export const createUser = async (req: Request, res: Response) => {
             .insert()
             .into(User)
             .values([
-                { username, password: hashedPassword, email }
+                { username, password: hashedPassword, email, company, employee: employee, role: role }
             ])
             .execute();
         

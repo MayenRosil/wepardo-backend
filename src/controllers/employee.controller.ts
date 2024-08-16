@@ -7,7 +7,7 @@ import { Employee } from '../entities/Employee';
 export const createEmployee = async (req: Request, res: Response) => {
 
     try {
-        const { firstName, secondName, firstLastName, secondLastName, CUI, NIT, user, position } = req.body;
+        const { firstName, secondName, firstLastName, secondLastName, CUI, NIT, position } = req.body;
 
         await AppDataSource
             .getRepository(Employee)
@@ -15,11 +15,11 @@ export const createEmployee = async (req: Request, res: Response) => {
             .insert()
             .into(Employee)
             .values([
-                { firstName, secondName, firstLastName, secondLastName, CUI, NIT, position }
+                { firstName, secondName, firstLastName, secondLastName, CUI, NIT, position, company: () => req.userCompany }
             ])
             .execute();
 
-        return res.json({ message: "empleado creado", errorCode: 0 });
+        return res.json({ message: "Empleado creado", errorCode: 0 });
 
     } catch (error) {
         if (error instanceof Error)
@@ -34,7 +34,8 @@ export const getEmployees = async (req: Request, res: Response) => {
         const employees = await AppDataSource
             .getRepository(Employee)
             .createQueryBuilder('employee')
-            .innerJoinAndSelect('employee.user', 'user')
+            .where("employee.companyId = :company", { company: req.userCompany })
+            //.innerJoinAndSelect('employee.user', 'user')
             .innerJoinAndSelect('employee.position', 'position')
             .innerJoinAndSelect('position.department', 'department')
             .getMany();
