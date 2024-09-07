@@ -47,3 +47,35 @@ export const getUsers = async (req: Request, res: Response) => {
             return res.status(500).json({message: error.message, errorCode: 2});
     }
 }
+
+export const getUser = async (req: Request, res: Response) => {
+    try {
+        const {id} = req.params;
+        
+        const user = await AppDataSource
+            .getRepository(User)
+            .createQueryBuilder('user')
+            .leftJoinAndSelect('user.company', 'company')
+            .leftJoinAndSelect('user.employee', 'employee')
+            .select([
+                'user.id', 
+                'user.username', 
+                'user.email', 
+                'company.companyName',
+                'employee.firstName', 
+                'employee.firstLastName', 
+                'employee.CUI'
+            ])
+            .where("user.id = :id", { id })
+            .getOne();
+        
+        
+        if(!user) return res.json({message: "Usuario no existe", errorCode: 1});
+
+        return res.json({user, errorCode: 0});
+
+    } catch (error) {
+        if(error instanceof Error)
+            return res.status(500).json({message: error.message, errorCode: 2});
+    }
+}
