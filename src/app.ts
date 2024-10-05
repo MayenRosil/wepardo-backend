@@ -16,7 +16,7 @@ import productRoutes from './routes/product.route';
 const app: Application = express();
 
 //settings
-app.set('port', 3000)
+app.set('port', 3001)
 
 //middlewares
 app.use(morgan('dev'));
